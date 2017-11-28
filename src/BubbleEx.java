@@ -5,7 +5,7 @@ import java.util.*;
 import javax.swing.*;
 public class BubbleEx extends JFrame {
 	public BubbleEx() {
-		super("¹öºí°ÔÀÓ");
+		super("ë²„ë¸”ê²Œì„");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Bubble g = new Bubble();
 		setContentPane(g);
@@ -15,20 +15,20 @@ public class BubbleEx extends JFrame {
 
 	class Bubble extends JPanel {
 		public Bubble() {
-			setLayout(null);//À§Ä¡ ÁöÁ¤ ¾ÈÇÔ
-			addMouseListener(new MouseAdapter() {//¸¶¿ì½º·Î ´©¸£¸é ÀÌ¹ÌÁö »ı¼º
+			setLayout(null);//ìœ„ì¹˜ ì§€ì • ì•ˆí•¨
+			addMouseListener(new MouseAdapter() {//ë§ˆìš°ìŠ¤ë¡œ ëˆ„ë¥´ë©´ ì´ë¯¸ì§€ ìƒì„±
 				public void mousePressed(MouseEvent e) {
 					BubbleThread bubble = new BubbleThread(e.getX(), e.getY());
-					bubble.start();//½ÃÀÛ
+					bubble.start();//ì‹œì‘
 				}
 			});
 		}
 		class BubbleThread extends Thread {
 			JLabel bubble;
 			public BubbleThread(int x, int y) {
-				ImageIcon img = new ImageIcon("image.jpg");//ÀÌ¹ÌÁö ÆÄÀÏ ºÒ·¯¿À±â
+				ImageIcon img = new ImageIcon("image.jpg");//ì´ë¯¸ì§€ íŒŒì¼ ë¶ˆëŸ¬ì˜¤ê¸°
 				bubble = new JLabel(img);
-				bubble.setSize(img.getIconWidth(), img.getIconWidth());//ÀÌ¹ÌÁö Å©±â ±×´ë·Î
+				bubble.setSize(img.getIconWidth(), img.getIconWidth());//ì´ë¯¸ì§€ í¬ê¸° ê·¸ëŒ€ë¡œ
 				bubble.setLocation(x,y);
 				add(bubble);
 				repaint();
@@ -36,8 +36,8 @@ public class BubbleEx extends JFrame {
 			public void run() {
 				while(true) {
 					int x = bubble.getX();
-					int y = bubble.getY()+5;//-5ÇÈ¼¿¾¿ ÀÌµ¿
-					if(y < 0) {//0À» ¹ş¾î³ª¸é »èÁ¦
+					int y = bubble.getY()-5;//-5í”½ì…€ì”© ì´ë™
+					if(y < 0) {//0ì„ ë²—ì–´ë‚˜ë©´ ì‚­ì œ
 						remove(bubble);
 						repaint();
 						return;
